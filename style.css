@@ -1,0 +1,195 @@
+/* Basic Resets & Body Styling */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f7f6;
+    color: #333;
+    line-height: 1.5;
+    font-size: 0.95em; /* Slightly smaller base font size */
+}
+
+header {
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    padding: 15px 0;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+header h1 {
+    color: #ecf0f1;
+    font-size: 1.8em;
+    margin-bottom: 5px;
+}
+header p {
+    font-size: 0.9em;
+    margin-top: 0;
+}
+
+
+/* Dashboard Container - CRUCIAL CHANGE HERE */
+.dashboard-container {
+    max-width: 1000px; /* Constrain max-width to ensure tables don't get too wide on huge screens */
+    margin: 20px auto;
+    padding: 0 20px; /* Ample horizontal padding */
+    display: grid;
+    /* Force one column, making each card take its own row */
+    grid-template-columns: 1fr;
+    gap: 20px; /* Increased gap between cards for clear separation */
+}
+
+.metric-card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    padding: 25px; /* Slightly increased padding inside cards for breathing room */
+    /* Remove overflow-x: auto; from here because we want to avoid it at all costs now */
+}
+
+.section-title {
+    font-size: 1.3em;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #c8d9e6;
+    padding-bottom: 8px;
+    color: #4a6a8a;
+    display: flex; /* Use flexbox for title and icon alignment */
+    align-items: center;
+}
+.section-title svg { /* If using SVG icons in titles */
+    vertical-align: middle;
+    margin-right: 8px;
+    font-size: 1.1em;
+}
+
+
+/* Navigation for month selection */
+.month-selector {
+    text-align: center;
+    margin: 15px auto;
+    padding: 10px;
+    background-color: #ecf0f1;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    max-width: 700px;
+}
+.month-selector h2 {
+    font-size: 1.1em;
+    color: #555;
+    margin-bottom: 8px;
+}
+.month-selector button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    margin: 0 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.3s ease;
+}
+.month-selector button:hover {
+    background-color: #2980b9;
+}
+.month-selector button.active {
+    background-color: #e74c3c;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+}
+
+/* Table Styling */
+table {
+    width: 100%; /* Ensure table takes full width of its container */
+    border-collapse: collapse;
+    margin-top: 10px;
+    font-size: 0.9em;
+    table-layout: fixed; /* Crucial: Distributes column widths evenly or as specified */
+}
+th, td {
+    padding: 8px 10px;
+    border-bottom: 1px solid #eee;
+    text-align: left;
+    vertical-align: top;
+    word-wrap: break-word; /* Allow long words to break */
+}
+th {
+    background-color: #f8f8f8;
+    font-weight: bold;
+    color: #666;
+    white-space: nowrap; /* Prevent header text from wrapping */
+}
+/* Optional: Specify column widths if needed to control layout more precisely */
+/* For example, if "Metric" column should be wider: */
+/* table th:first-child, table td:first-child { width: 35%; } */
+/* table th:nth-child(2), table td:nth-child(2),
+   table th:nth-child(3), table td:nth-child(3) { width: 15%; } */
+/* table th:nth-child(4), table td:nth-child(4) { width: 15%; } */
+/* table th:last-child, table td:last-child { width: 20%; } */
+
+
+tr:hover {
+    background-color: #fafafa;
+}
+
+/* Status Indicators */
+.status-icon {
+    font-weight: bold;
+    margin-right: 4px;
+}
+/* Ensure status text stays on one line if possible, but allow wrap if absolutely needed */
+td span.status-icon + span {
+    white-space: nowrap;
+}
+
+.status-icon.growth { color: #27ae60; }
+.status-icon.stable { color: #f39c12; }
+.status-icon.decline { color: #e74c3c; }
+.status-icon.excellent { color: #1abc9c; }
+.status-icon.concern { color: #c0392b; }
+.status-icon.major { color: #8e44ad; }
+
+
+/* Insights Section */
+.insights-section {
+    grid-column: 1 / -1; /* Always span full width */
+    padding: 25px; /* Consistent padding */
+}
+.insights-section ul {
+    list-style: disc;
+    padding-left: 20px;
+    margin-top: 10px;
+}
+.insights-section li {
+    margin-bottom: 6px;
+    line-height: 1.4;
+}
+
+footer {
+    text-align: center;
+    padding: 15px;
+    margin-top: 20px;
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    font-size: 0.85em;
+}
+
+/* Responsive design adjustments for very small screens if needed, though less critical now */
+@media (max-width: 600px) {
+    .dashboard-container {
+        padding: 0 10px;
+        gap: 15px;
+    }
+    .metric-card {
+        padding: 15px;
+    }
+    table {
+        font-size: 0.8em; /* Slightly smaller table text for very compact views */
+    }
+    th, td {
+        padding: 6px 8px;
+    }
+    .month-selector button {
+        width: calc(100% - 16px);
+        margin: 8px auto;
+    }
+}
